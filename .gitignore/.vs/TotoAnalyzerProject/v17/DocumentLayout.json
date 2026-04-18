@@ -1,0 +1,173 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\User\\Desktop\\TotoAnalyzerProject\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{29B7263F-2979-4B5F-AB4F-EAC15DACEF7A}|TotoAnalyzerProject\\TotoAnalyzerProject.csproj|c:\\users\\user\\desktop\\totoanalyzerproject\\totoanalyzerproject\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{29B7263F-2979-4B5F-AB4F-EAC15DACEF7A}|TotoAnalyzerProject\\TotoAnalyzerProject.csproj|solutionrelative:totoanalyzerproject\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{29B7263F-2979-4B5F-AB4F-EAC15DACEF7A}|TotoAnalyzerProject\\TotoAnalyzerProject.csproj|c:\\users\\user\\desktop\\totoanalyzerproject\\totoanalyzerproject\\ui\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{29B7263F-2979-4B5F-AB4F-EAC15DACEF7A}|TotoAnalyzerProject\\TotoAnalyzerProject.csproj|solutionrelative:totoanalyzerproject\\ui\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{29B7263F-2979-4B5F-AB4F-EAC15DACEF7A}|TotoAnalyzerProject\\TotoAnalyzerProject.csproj|c:\\users\\user\\desktop\\totoanalyzerproject\\totoanalyzerproject\\parsers\\txtparser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{29B7263F-2979-4B5F-AB4F-EAC15DACEF7A}|TotoAnalyzerProject\\TotoAnalyzerProject.csproj|solutionrelative:totoanalyzerproject\\parsers\\txtparser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{29B7263F-2979-4B5F-AB4F-EAC15DACEF7A}|TotoAnalyzerProject\\TotoAnalyzerProject.csproj|c:\\users\\user\\desktop\\totoanalyzerproject\\totoanalyzerproject\\parsers\\docxparser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{29B7263F-2979-4B5F-AB4F-EAC15DACEF7A}|TotoAnalyzerProject\\TotoAnalyzerProject.csproj|solutionrelative:totoanalyzerproject\\parsers\\docxparser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{29B7263F-2979-4B5F-AB4F-EAC15DACEF7A}|TotoAnalyzerProject\\TotoAnalyzerProject.csproj|c:\\users\\user\\desktop\\totoanalyzerproject\\totoanalyzerproject\\totoanalyzerproject.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{29B7263F-2979-4B5F-AB4F-EAC15DACEF7A}|TotoAnalyzerProject\\TotoAnalyzerProject.csproj|solutionrelative:totoanalyzerproject\\totoanalyzerproject.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{29B7263F-2979-4B5F-AB4F-EAC15DACEF7A}|TotoAnalyzerProject\\TotoAnalyzerProject.csproj|c:\\users\\user\\desktop\\totoanalyzerproject\\totoanalyzerproject\\services\\visualizer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{29B7263F-2979-4B5F-AB4F-EAC15DACEF7A}|TotoAnalyzerProject\\TotoAnalyzerProject.csproj|solutionrelative:totoanalyzerproject\\services\\visualizer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{29B7263F-2979-4B5F-AB4F-EAC15DACEF7A}|TotoAnalyzerProject\\TotoAnalyzerProject.csproj|c:\\users\\user\\desktop\\totoanalyzerproject\\totoanalyzerproject\\services\\statistics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{29B7263F-2979-4B5F-AB4F-EAC15DACEF7A}|TotoAnalyzerProject\\TotoAnalyzerProject.csproj|solutionrelative:totoanalyzerproject\\services\\statistics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{29B7263F-2979-4B5F-AB4F-EAC15DACEF7A}|TotoAnalyzerProject\\TotoAnalyzerProject.csproj|c:\\users\\user\\desktop\\totoanalyzerproject\\totoanalyzerproject\\services\\dataloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{29B7263F-2979-4B5F-AB4F-EAC15DACEF7A}|TotoAnalyzerProject\\TotoAnalyzerProject.csproj|solutionrelative:totoanalyzerproject\\services\\dataloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{29B7263F-2979-4B5F-AB4F-EAC15DACEF7A}|TotoAnalyzerProject\\TotoAnalyzerProject.csproj|c:\\users\\user\\desktop\\totoanalyzerproject\\totoanalyzerproject\\models\\totodraw.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{29B7263F-2979-4B5F-AB4F-EAC15DACEF7A}|TotoAnalyzerProject\\TotoAnalyzerProject.csproj|solutionrelative:totoanalyzerproject\\models\\totodraw.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 8,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "DocxParser.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\TotoAnalyzerProject\\TotoAnalyzerProject\\Parsers\\DocxParser.cs",
+              "RelativeDocumentMoniker": "TotoAnalyzerProject\\Parsers\\DocxParser.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\TotoAnalyzerProject\\TotoAnalyzerProject\\Parsers\\DocxParser.cs",
+              "RelativeToolTip": "TotoAnalyzerProject\\Parsers\\DocxParser.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-18T14:51:55.121Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "TxtParser.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\TotoAnalyzerProject\\TotoAnalyzerProject\\Parsers\\TxtParser.cs",
+              "RelativeDocumentMoniker": "TotoAnalyzerProject\\Parsers\\TxtParser.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\TotoAnalyzerProject\\TotoAnalyzerProject\\Parsers\\TxtParser.cs",
+              "RelativeToolTip": "TotoAnalyzerProject\\Parsers\\TxtParser.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-18T14:51:31.532Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Menu.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\TotoAnalyzerProject\\TotoAnalyzerProject\\UI\\Menu.cs",
+              "RelativeDocumentMoniker": "TotoAnalyzerProject\\UI\\Menu.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\TotoAnalyzerProject\\TotoAnalyzerProject\\UI\\Menu.cs",
+              "RelativeToolTip": "TotoAnalyzerProject\\UI\\Menu.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-18T14:50:50.082Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Visualizer.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\TotoAnalyzerProject\\TotoAnalyzerProject\\Services\\Visualizer.cs",
+              "RelativeDocumentMoniker": "TotoAnalyzerProject\\Services\\Visualizer.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\TotoAnalyzerProject\\TotoAnalyzerProject\\Services\\Visualizer.cs",
+              "RelativeToolTip": "TotoAnalyzerProject\\Services\\Visualizer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-18T14:50:32.679Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Statistics.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\TotoAnalyzerProject\\TotoAnalyzerProject\\Services\\Statistics.cs",
+              "RelativeDocumentMoniker": "TotoAnalyzerProject\\Services\\Statistics.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\TotoAnalyzerProject\\TotoAnalyzerProject\\Services\\Statistics.cs",
+              "RelativeToolTip": "TotoAnalyzerProject\\Services\\Statistics.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-18T14:50:26.669Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "DataLoader.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\TotoAnalyzerProject\\TotoAnalyzerProject\\Services\\DataLoader.cs",
+              "RelativeDocumentMoniker": "TotoAnalyzerProject\\Services\\DataLoader.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\TotoAnalyzerProject\\TotoAnalyzerProject\\Services\\DataLoader.cs",
+              "RelativeToolTip": "TotoAnalyzerProject\\Services\\DataLoader.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-18T14:50:18.041Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "TotoDraw.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\TotoAnalyzerProject\\TotoAnalyzerProject\\Models\\TotoDraw.cs",
+              "RelativeDocumentMoniker": "TotoAnalyzerProject\\Models\\TotoDraw.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\TotoAnalyzerProject\\TotoAnalyzerProject\\Models\\TotoDraw.cs",
+              "RelativeToolTip": "TotoAnalyzerProject\\Models\\TotoDraw.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-18T14:49:50.458Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "TotoAnalyzerProject",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\TotoAnalyzerProject\\TotoAnalyzerProject\\TotoAnalyzerProject.csproj",
+              "RelativeDocumentMoniker": "TotoAnalyzerProject\\TotoAnalyzerProject.csproj",
+              "ToolTip": "C:\\Users\\User\\Desktop\\TotoAnalyzerProject\\TotoAnalyzerProject\\TotoAnalyzerProject.csproj",
+              "RelativeToolTip": "TotoAnalyzerProject\\TotoAnalyzerProject.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-04-18T14:49:06.081Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\TotoAnalyzerProject\\TotoAnalyzerProject\\Program.cs",
+              "RelativeDocumentMoniker": "TotoAnalyzerProject\\Program.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\TotoAnalyzerProject\\TotoAnalyzerProject\\Program.cs",
+              "RelativeToolTip": "TotoAnalyzerProject\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-18T14:35:25.813Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

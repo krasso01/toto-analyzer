@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+
 
 namespace TotoAnalyzerProject.Models
 {
-    internal class TotoDraw
+    public class TotoDraw
     {
+        public int Year { get; set; }
+        public int DrawNumber { get; set; }
+        public List<int> WinningNumbers { get; set; } = new();
+
     }
 }

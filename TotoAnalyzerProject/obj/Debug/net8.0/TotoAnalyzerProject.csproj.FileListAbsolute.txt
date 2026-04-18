@@ -1,0 +1,15 @@
+C:\Users\User\Desktop\TotoAnalyzerProject\TotoAnalyzerProject\bin\Debug\net8.0\TotoAnalyzerProject.exe
+C:\Users\User\Desktop\TotoAnalyzerProject\TotoAnalyzerProject\bin\Debug\net8.0\TotoAnalyzerProject.deps.json
+C:\Users\User\Desktop\TotoAnalyzerProject\TotoAnalyzerProject\bin\Debug\net8.0\TotoAnalyzerProject.runtimeconfig.json
+C:\Users\User\Desktop\TotoAnalyzerProject\TotoAnalyzerProject\bin\Debug\net8.0\TotoAnalyzerProject.dll
+C:\Users\User\Desktop\TotoAnalyzerProject\TotoAnalyzerProject\bin\Debug\net8.0\TotoAnalyzerProject.pdb
+C:\Users\User\Desktop\TotoAnalyzerProject\TotoAnalyzerProject\obj\Debug\net8.0\TotoAnalyzerProject.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\Desktop\TotoAnalyzerProject\TotoAnalyzerProject\obj\Debug\net8.0\TotoAnalyzerProject.AssemblyInfoInputs.cache
+C:\Users\User\Desktop\TotoAnalyzerProject\TotoAnalyzerProject\obj\Debug\net8.0\TotoAnalyzerProject.AssemblyInfo.cs
+C:\Users\User\Desktop\TotoAnalyzerProject\TotoAnalyzerProject\obj\Debug\net8.0\TotoAnalyzerProject.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\TotoAnalyzerProject\TotoAnalyzerProject\obj\Debug\net8.0\TotoAnalyzerProject.sourcelink.json
+C:\Users\User\Desktop\TotoAnalyzerProject\TotoAnalyzerProject\obj\Debug\net8.0\TotoAnalyzerProject.dll
+C:\Users\User\Desktop\TotoAnalyzerProject\TotoAnalyzerProject\obj\Debug\net8.0\refint\TotoAnalyzerProject.dll
+C:\Users\User\Desktop\TotoAnalyzerProject\TotoAnalyzerProject\obj\Debug\net8.0\TotoAnalyzerProject.pdb
+C:\Users\User\Desktop\TotoAnalyzerProject\TotoAnalyzerProject\obj\Debug\net8.0\TotoAnalyzerProject.genruntimeconfig.cache
+C:\Users\User\Desktop\TotoAnalyzerProject\TotoAnalyzerProject\obj\Debug\net8.0\ref\TotoAnalyzerProject.dll

@@ -3,8 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\User\\Desktop\\TotoAnalyzerProject\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{29B7263F-2979-4B5F-AB4F-EAC15DACEF7A}|TotoAnalyzerProject\\TotoAnalyzerProject.csproj|c:\\users\\user\\desktop\\totoanalyzerproject\\totoanalyzerproject\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{29B7263F-2979-4B5F-AB4F-EAC15DACEF7A}|TotoAnalyzerProject\\TotoAnalyzerProject.csproj|solutionrelative:totoanalyzerproject\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{29B7263F-2979-4B5F-AB4F-EAC15DACEF7A}|TotoAnalyzerProject\\TotoAnalyzerProject.csproj|c:\\users\\user\\desktop\\totoanalyzerproject\\totoanalyzerproject\\models\\totodraw.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{29B7263F-2979-4B5F-AB4F-EAC15DACEF7A}|TotoAnalyzerProject\\TotoAnalyzerProject.csproj|solutionrelative:totoanalyzerproject\\models\\totodraw.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -19,14 +19,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\User\\Desktop\\TotoAnalyzerProject\\TotoAnalyzerProject\\Program.cs",
-              "RelativeDocumentMoniker": "TotoAnalyzerProject\\Program.cs",
-              "ToolTip": "C:\\Users\\User\\Desktop\\TotoAnalyzerProject\\TotoAnalyzerProject\\Program.cs",
-              "RelativeToolTip": "TotoAnalyzerProject\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "TotoDraw.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\TotoAnalyzerProject\\TotoAnalyzerProject\\Models\\TotoDraw.cs",
+              "RelativeDocumentMoniker": "TotoAnalyzerProject\\Models\\TotoDraw.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\TotoAnalyzerProject\\TotoAnalyzerProject\\Models\\TotoDraw.cs*",
+              "RelativeToolTip": "TotoAnalyzerProject\\Models\\TotoDraw.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-18T14:35:25.813Z",
+              "WhenOpened": "2026-04-18T15:04:07.865Z",
               "EditorCaption": ""
             }
           ]

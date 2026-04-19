@@ -34,6 +34,13 @@ namespace TotoAnalyzerProject.Services
 
             return urls;
         }
+        public async Task<string> FileContentAsync(string url)
+        {
+            string content = await httpClient.GetStringAsync(url);
+            return content;
+
+
+        }
     }
 }
 

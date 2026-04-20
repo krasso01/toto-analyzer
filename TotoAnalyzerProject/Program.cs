@@ -1,6 +1,7 @@
 ﻿using System.Net.Http;
 using System.Threading.Tasks;
 using TotoAnalyzerProject.Services;
+using TotoAnalyzerProject.Models;
 
 namespace TotoAnalyzerProject
 {
@@ -23,12 +24,15 @@ namespace TotoAnalyzerProject
             DataLoader dataLoader = new DataLoader(httpClient);
 
             List<string> fileUrls = await dataLoader.GetFilesUrlAsync();
+         //   Console.WriteLine(string.Join("\n", fileUrls));
             string firstUrl = fileUrls[0];
             string fileContent = await dataLoader.FileContentAsync(firstUrl);
-            string[] fileNumbers = fileContent.Split('\n', StringSplitOptions.RemoveEmptyEntries);
-
-            Console.WriteLine($"First file URL: {firstUrl}");
-            Console.WriteLine(string.Join("\n",fileNumbers));
+            //  string[] fileNumbers = fileContent.Split('\n', StringSplitOptions.RemoveEmptyEntries);
+            int year = dataLoader.ExtractYearFromUrl(firstUrl);
+            IEnumerable<TotoDraw> totoDraws = dataLoader.ParseTxtContent(fileContent, year);
+            dataLoader.PrintTxtContent(totoDraws,year);
+           // Console.WriteLine($"First file URL: {firstUrl}");
+           // Console.WriteLine(string.Join("\n",fileNumbers));
         }
     }
     }

@@ -19,7 +19,7 @@ namespace TotoAnalyzerProject.Services
         public async Task<List<string>> GetFilesUrlAsync()
         {
             string html = await GetPageContentAsync("https://info.toto.bg/statistika/6x49");
-            List<string> urls = new();
+            List<string> urls = new List<string>();
             MatchCollection matches = Regex.Matches(html, "href=\"([^\"]+)\"");
 
             foreach (Match match in matches)
@@ -35,6 +35,31 @@ namespace TotoAnalyzerProject.Services
 
             return urls;
         }
+
+        public List<string> ExtractFileUrls(string html)
+        {
+            List<string> urls = new List<string>();
+            MatchCollection matches = Regex.Matches(html, "href=\"([^\"]+)\"");
+
+            foreach (Match match in matches)
+            {
+                string link = match.Groups[1].Value.Trim();
+                link = link.Replace(" ", "");
+
+                if (link.Contains("content/files/stats-tiraji/"))
+                {
+                    string fullUrl = "https://info.toto.bg" + link;
+
+                    if (!urls.Contains(fullUrl))
+                    {
+                        urls.Add(fullUrl);
+                    }
+                }
+            }
+
+            return urls;
+        }
+
         public async Task<string> FileContentAsync(string url)
         {
             string content = await httpClient.GetStringAsync(url);
@@ -65,27 +90,48 @@ namespace TotoAnalyzerProject.Services
 
         public IEnumerable<TotoDraw> ParseTxtContent(string content,int year)
         {
-            string[] lines = content.Split('\n');
-            List<TotoDraw> totoDraw = new List<TotoDraw>();
-            
+            // 601,18,20,21,22,39,46   3,15,23,26,31,34
+            string[] lines = content.Split('\n', StringSplitOptions.RemoveEmptyEntries);
+            List<TotoDraw> TotoDraws = new List<TotoDraw>();
             foreach(string line in lines)
-            {
-                string cleanLine = line.Trim();
-                string[] numbers = cleanLine.Split(',', StringSplitOptions.RemoveEmptyEntries);
-                TotoDraw currentLine = new TotoDraw();
-                if (numbers.Length < 7)
+            { 
+                MatchCollection matches = Regex.Matches(line, @"\d+");
+                List<int> numbers = new List<int>();
+                foreach(Match match in matches)
+                {
+                    numbers.Add(int.Parse(match.Value));
+                }
+                if (numbers.Count < 7)
                 {
                     continue;
                 }
-                currentLine.DrawNumber = int.Parse(numbers[0]);
-                for(int i = 1; i <= 6; i++)
+                int combinationIndex = 1;
+
+                for (int i = 1; i < numbers.Count; i += 6)
                 {
-                    int currentNumber = int.Parse(numbers[i]);
-                    currentLine.WinningNumbers.Add(currentNumber);
+                    if (i + 5 >= numbers.Count)
+                    {
+                        break;
+                    }
+                    List<int> winningNumbers = new List<int>();
+                    for (int j = i; j < i + 6; j++)
+                    {
+                        winningNumbers.Add(numbers[j]);
+                    }
+                    TotoDraw currentDraw = new TotoDraw();
+                    currentDraw.Year = year;
+                    currentDraw.DrawNumber = numbers[0];
+                    currentDraw.CombinationIndex = combinationIndex;
+                    currentDraw.WinningNumbers.AddRange(winningNumbers);
+                    TotoDraws.Add(currentDraw);
+                    combinationIndex++;
+
                 }
-                totoDraw.Add(currentLine);
+
             }
-            return totoDraw;
+                
+               
+            return TotoDraws;
         }
 
         public void PrintTxtContent(IEnumerable<TotoDraw> draws,int year)
@@ -93,14 +139,9 @@ namespace TotoAnalyzerProject.Services
             Console.WriteLine($"Year:{year}");
             foreach(TotoDraw draw in draws)
             {
-
-                
                 Console.WriteLine($"Draw Number: {draw.DrawNumber}");
-                Console.Write($"Winning numbers: ");
-                foreach(int number in draw.WinningNumbers)
-                {
-                    Console.Write($"{number} "); 
-                }
+                Console.WriteLine($"Combination Index: {draw.CombinationIndex}");
+                Console.WriteLine($"Winning numbers: {string.Join(", ", draw.WinningNumbers)}");
                 Console.WriteLine();
             }
         }

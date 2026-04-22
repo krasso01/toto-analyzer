@@ -58,7 +58,7 @@ namespace TotoAnalyzerProject.Parsers
 
         public void PrintTxtContent(IEnumerable<TotoDraw> draws, int year)
         {
-            
+            Console.WriteLine($"Year:{year}");
             foreach (TotoDraw draw in draws)
             {
                 Console.WriteLine($"Draw Number: {draw.DrawNumber}");

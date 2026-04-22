@@ -63,14 +63,13 @@ namespace TotoAnalyzerProject
                     Console.WriteLine($"Failed to process TXT file: {txtUrl}");
                     Console.WriteLine(ex.Message);
                 }
+                
+            }
                 Console.WriteLine();
                 Console.WriteLine($"Total TXT files parsed: {txtUrls.Count}");
                 Console.WriteLine($"Total parsed draw entries: {allDraws.Count}");
                 Console.WriteLine();
-
                 txtParser.PrintTxtContent(allDraws.Take(5), allDraws.FirstOrDefault().Year);
-            }
-
             //  allDraws.FirstOrDefault()?.Year ?? 0
 
 

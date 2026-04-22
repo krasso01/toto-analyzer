@@ -2,7 +2,9 @@
 using System.Threading.Tasks;
 using TotoAnalyzerProject.Services;
 using TotoAnalyzerProject.Models;
+using TotoAnalyzerProject.Parsers;
 using System.Linq;
+
 
 namespace TotoAnalyzerProject
 {
@@ -25,34 +27,59 @@ namespace TotoAnalyzerProject
             httpClient.DefaultRequestHeaders.Add("Accept-Language", "bg-BG,bg;q=0.9,en-US;q=0.8,en;q=0.7");
 
 
-            try
-            {
                 DataLoader dataLoader = new DataLoader(httpClient);
-                 string html = await dataLoader.GetPageContentAsync("https://info.toto.bg/statistika/6x49");
+                string html = await dataLoader.GetPageContentAsync("https://info.toto.bg/statistika/6x49");
+                TxtParser txtParser = new();
 
-
-                List<string> fileUrls = await dataLoader.GetFilesUrlAsync();
-
+                List<string> fileUrls = dataLoader.ExtractFileUrls(html);
                 Console.WriteLine($"Found URLs: {fileUrls.Count}");
+
                 if (fileUrls.Count == 0)
                 {
                     Console.WriteLine("No file URLs found. The site may have returned a captcha or blocked the request.");
                     return;
                 }
-                string firstUrl = fileUrls[0];
-                Console.WriteLine($"First URL: {firstUrl}");
 
-                string fileContent = await dataLoader.FileContentAsync(firstUrl);
-                int year = dataLoader.ExtractYearFromUrl(firstUrl);
-                IEnumerable<TotoDraw> totoDraws = dataLoader.ParseTxtContent(fileContent, year);
-                dataLoader.PrintTxtContent(totoDraws, year);
-            }
-            catch (Exception ex)
+            List<string> txtUrls = fileUrls
+            .Where(url => url.EndsWith(".txt", StringComparison.OrdinalIgnoreCase))
+            .ToList();
+
+            List<TotoDraw> allDraws = new();
+
+            foreach(string txtUrl in txtUrls)
             {
-                Console.WriteLine("ERROR:");
-                Console.WriteLine(ex.Message);
-                Console.WriteLine(ex.StackTrace);
+                try
+                {
+                    string fileContent = await dataLoader.FileContentAsync(txtUrl);
+                    int year = dataLoader.ExtractYearFromUrl(txtUrl);
+
+                    IEnumerable<TotoDraw> currentDraws = txtParser.ParseTxtContent(fileContent,year);
+                    allDraws.AddRange(currentDraws);
+
+                    Console.WriteLine($"Successfully parsed TXT file for year {year}");
+                }
+                catch(Exception ex)
+                {
+                    Console.WriteLine($"Failed to process TXT file: {txtUrl}");
+                    Console.WriteLine(ex.Message);
+                }
+                Console.WriteLine();
+                Console.WriteLine($"Total TXT files parsed: {txtUrls.Count}");
+                Console.WriteLine($"Total parsed draw entries: {allDraws.Count}");
+                Console.WriteLine();
+
+                txtParser.PrintTxtContent(allDraws.Take(5), allDraws.FirstOrDefault().Year);
             }
+
+            //  allDraws.FirstOrDefault()?.Year ?? 0
+
+
+            //   IEnumerable<TotoDraw> totoDraws = dataLoader.ParseTxtContent(fileContent, year);
+            //   dataLoader.PrintTxtContent(totoDraws, year);
+
+
+
+
 
         }
     }

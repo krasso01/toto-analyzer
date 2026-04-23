@@ -24,12 +24,18 @@ namespace TotoAnalyzerProject.Services
 
             foreach (Match match in matches)
             {
-                string link = match.Groups[1].Value;
+                string link = match.Groups[1].Value.Trim();
+                link = link.Replace(" ", "");
 
-                if (link.Contains("/content/files/stats-tiraji/"))
+                if (link.Contains("/content/files/") &&
+                    (link.EndsWith(".txt", StringComparison.OrdinalIgnoreCase) ||
+                    link.EndsWith(".docx", StringComparison.OrdinalIgnoreCase)))
                 {
                     string fullUrl = "https://info.toto.bg" + link;
-                    urls.Add(fullUrl);
+                    if (!urls.Contains(fullUrl))
+                    {
+                        urls.Add(fullUrl);
+                    }
                 }
             }
 
@@ -46,7 +52,9 @@ namespace TotoAnalyzerProject.Services
                 string link = match.Groups[1].Value.Trim();
                 link = link.Replace(" ", "");
 
-                if (link.Contains("content/files/stats-tiraji/"))
+                if (link.Contains("/content/files/") &&
+                    (link.EndsWith(".txt", StringComparison.OrdinalIgnoreCase) ||
+                    link.EndsWith(".docx", StringComparison.OrdinalIgnoreCase)))
                 {
                     string fullUrl = "https://info.toto.bg" + link;
 
@@ -69,6 +77,15 @@ namespace TotoAnalyzerProject.Services
         }
         public int ExtractYearFromUrl(string url)
         {
+            string[] urlParts = url.Split('/', StringSplitOptions.RemoveEmptyEntries);
+             foreach(string part in urlParts)
+            {
+                if(part.Length == 4 && int.TryParse(part, out int pathYear))
+                {
+                    return pathYear;
+                }
+            }
+
             int FileNameIndex = url.IndexOf("649");
             string FileName = url.Substring(FileNameIndex,url.Length - FileNameIndex);
             int FileNameExtensionIndex = FileName.IndexOf(".txt");

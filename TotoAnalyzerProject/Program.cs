@@ -15,8 +15,9 @@ namespace TotoAnalyzerProject
             HttpClientHandler? handler = new HttpClientHandler()
             {
                 AutomaticDecompression = System.Net.DecompressionMethods.GZip |
-                System.Net.DecompressionMethods.Deflate
+                                         System.Net.DecompressionMethods.Deflate
             };
+
             HttpClient httpClient = new HttpClient(handler);
             httpClient.DefaultRequestHeaders.Clear();
             httpClient.DefaultRequestHeaders.Add("User-Agent",
@@ -27,11 +28,13 @@ namespace TotoAnalyzerProject
             httpClient.DefaultRequestHeaders.Add("Accept-Language", "bg-BG,bg;q=0.9,en-US;q=0.8,en;q=0.7");
 
 
-                DataLoader dataLoader = new DataLoader(httpClient);
-                string html = await dataLoader.GetPageContentAsync("https://info.toto.bg/statistika/6x49");
-                TxtParser txtParser = new();
+            DataLoader dataLoader = new DataLoader(httpClient);
+            TxtParser txtParser = new TxtParser();
 
-                List<string> fileUrls = dataLoader.ExtractFileUrls(html);
+            string html = await dataLoader.GetPageContentAsync("https://info.toto.bg/statistika/6x49");
+
+
+                List<string> fileUrls = await dataLoader.GetFilesUrlAsync();
                 Console.WriteLine($"Found URLs: {fileUrls.Count}");
 
                 if (fileUrls.Count == 0)
@@ -44,9 +47,10 @@ namespace TotoAnalyzerProject
             .Where(url => url.EndsWith(".txt", StringComparison.OrdinalIgnoreCase))
             .ToList();
 
-            List<TotoDraw> allDraws = new();
+            List<TotoDraw> allDraws = new List<TotoDraw>();
 
-            foreach(string txtUrl in txtUrls)
+
+            foreach (string txtUrl in txtUrls)
             {
                 try
                 {
@@ -69,17 +73,10 @@ namespace TotoAnalyzerProject
                 Console.WriteLine($"Total TXT files parsed: {txtUrls.Count}");
                 Console.WriteLine($"Total parsed draw entries: {allDraws.Count}");
                 Console.WriteLine();
-                txtParser.PrintTxtContent(allDraws.Take(5), allDraws.FirstOrDefault().Year);
-            //  allDraws.FirstOrDefault()?.Year ?? 0
-
-
-            //   IEnumerable<TotoDraw> totoDraws = dataLoader.ParseTxtContent(fileContent, year);
-            //   dataLoader.PrintTxtContent(totoDraws, year);
-
-
-
-
-
+            if (allDraws.Any())
+            {
+                txtParser.PrintTxtContent(allDraws.Where(d => d.Year == 2020).Take(5));
+            }
         }
     }
     }

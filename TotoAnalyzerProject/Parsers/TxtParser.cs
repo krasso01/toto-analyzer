@@ -99,14 +99,25 @@ namespace TotoAnalyzerProject.Parsers
 
         private bool IsFormattedTxt(string content)
         {
-            Console.WriteLine($"Year:{year}");
+            return content.Contains("/2018") ||
+           content.Contains("/2019") ||
+           content.Contains("/2020") ||
+           content.Contains("/2021");
+        }
+
+        public void PrintTxtContent(IEnumerable<TotoDraw> draws)
+        {
+            
             foreach (TotoDraw draw in draws)
             {
+                Console.WriteLine($"Year: {draw.Year}");
                 Console.WriteLine($"Draw Number: {draw.DrawNumber}");
                 Console.WriteLine($"Combination Index: {draw.CombinationIndex}");
                 Console.WriteLine($"Winning numbers: {string.Join(", ", draw.WinningNumbers)}");
                 Console.WriteLine();
             }
         }
+
+       
     }
 }

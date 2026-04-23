@@ -10,7 +10,7 @@ namespace TotoAnalyzerProject.Parsers
 {
     public class TxtParser
     {
-        public IEnumerable<TotoDraw> ParseTxtContent(string content, int year)
+        public IEnumerable<TotoDraw> ParseLegacyTxtContent(string content, int year)
         {
             // 601,18,20,21,22,39,46   3,15,23,26,31,34
             string[] lines = content.Split('\n', StringSplitOptions.RemoveEmptyEntries);
@@ -55,8 +55,49 @@ namespace TotoAnalyzerProject.Parsers
 
             return totoDraws;
         }
+        private IEnumerable<TotoDraw> ParseFormattedTxtContent(string content)
+        {
+            string[] lines = content.Split('\n', StringSplitOptions.RemoveEmptyEntries);
+            List<TotoDraw> totoDraws = new List<TotoDraw>();
+            foreach(string line in lines)
+            {
+                MatchCollection matches = Regex.Matches(line, @"\d+");
+                if(matches.Count < 9)
+                {
+                    continue;
+                }
+                List<int> numbers = new List<int>();
+                foreach(Match match in matches)
+                {
+                    
+                    numbers.Add(int.Parse(match.Value));
+                }
+                TotoDraw currentDraw = new TotoDraw();
+                currentDraw.DrawNumber = numbers[0];
+                currentDraw.Year = numbers[1];
+                currentDraw.CombinationIndex = numbers[2];
+                List<int> winningNumbers = new List<int>();
+                for (int i = 3; i < numbers.Count; i++)
+                {
+                    winningNumbers.Add(numbers[i]);
+                }
+                currentDraw.WinningNumbers.AddRange(winningNumbers);
+                totoDraws.Add(currentDraw);
+            }
+            return totoDraws;
+        }
 
-        public void PrintTxtContent(IEnumerable<TotoDraw> draws, int year)
+        public IEnumerable<TotoDraw> ParseTxtContent(string content, int year)
+        {
+            if (IsFormattedTxt(content))
+            {
+                return ParseFormattedTxtContent(content);
+            }
+
+            return ParseLegacyTxtContent(content, year);
+        }
+
+        private bool IsFormattedTxt(string content)
         {
             Console.WriteLine($"Year:{year}");
             foreach (TotoDraw draw in draws)

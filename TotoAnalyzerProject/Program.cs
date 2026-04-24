@@ -54,10 +54,12 @@ namespace TotoAnalyzerProject
             await File.WriteAllBytesAsync(tempFilePath, docxBytes);
 
             string extractedText = docxParser.ExtractTextFromDocx(tempFilePath);
+            IEnumerable<TotoDraw> docxDraws = docxParser.ParseExtractedDocxText(extractedText);
 
-            Console.WriteLine($"DOCX URL: {firstDocxUrl}");
-            Console.WriteLine();
-            Console.WriteLine(extractedText.Substring(0, Math.Min(extractedText.Length, 1000)));
+            docxParser.PrintDocxContent(docxDraws);
+            //Console.WriteLine($"DOCX URL: {firstDocxUrl}");
+            //Console.WriteLine();
+            //Console.WriteLine(extractedText.Substring(0, Math.Min(extractedText.Length, 1000)));
 
             //    Console.WriteLine($"Found URLs: {fileUrls.Count}");
 

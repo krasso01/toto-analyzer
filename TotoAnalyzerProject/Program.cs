@@ -34,49 +34,73 @@ namespace TotoAnalyzerProject
             string html = await dataLoader.GetPageContentAsync("https://info.toto.bg/statistika/6x49");
 
 
-                List<string> fileUrls = await dataLoader.GetFilesUrlAsync();
-                Console.WriteLine($"Found URLs: {fileUrls.Count}");
-
-                if (fileUrls.Count == 0)
-                {
-                    Console.WriteLine("No file URLs found. The site may have returned a captcha or blocked the request.");
-                    return;
-                }
-
-            List<string> txtUrls = fileUrls
-            .Where(url => url.EndsWith(".txt", StringComparison.OrdinalIgnoreCase))
-            .ToList();
-
-            List<TotoDraw> allDraws = new List<TotoDraw>();
+            List<string> fileUrls = await dataLoader.GetFilesUrlAsync();
 
 
-            foreach (string txtUrl in txtUrls)
+            DocxParser docxParser = new();
+            List<string> docxUrls =                 
+                fileUrls.Where(url=> url.EndsWith(".docx", StringComparison.OrdinalIgnoreCase))
+                                              .ToList();
+
+            if(docxUrls.Count == 0)
             {
-                try
-                {
-                    string fileContent = await dataLoader.FileContentAsync(txtUrl);
-                    int year = dataLoader.ExtractYearFromUrl(txtUrl);
-
-                    IEnumerable<TotoDraw> currentDraws = txtParser.ParseTxtContent(fileContent,year);
-                    allDraws.AddRange(currentDraws);
-
-                    Console.WriteLine($"Successfully parsed TXT file for year {year}");
-                }
-                catch(Exception ex)
-                {
-                    Console.WriteLine($"Failed to process TXT file: {txtUrl}");
-                    Console.WriteLine(ex.Message);
-                }
-                
+                Console.WriteLine("No DOCX files found.");
+                return;
             }
-                Console.WriteLine();
-                Console.WriteLine($"Total TXT files parsed: {txtUrls.Count}");
-                Console.WriteLine($"Total parsed draw entries: {allDraws.Count}");
-                Console.WriteLine();
-            if (allDraws.Any())
-            {
-                txtParser.PrintTxtContent(allDraws.Where(d => d.Year == 2020).Take(5));
-            }
+            string firstDocxUrl = docxUrls[0];
+            byte[] docxBytes = await dataLoader.DownloadFileBytesAsync(firstDocxUrl);
+
+            string tempFilePath = Path.Combine(Path.GetTempPath(), "toto_test.docx");
+            await File.WriteAllBytesAsync(tempFilePath, docxBytes);
+
+            string extractedText = docxParser.ExtractTextFromDocx(tempFilePath);
+
+            Console.WriteLine($"DOCX URL: {firstDocxUrl}");
+            Console.WriteLine();
+            Console.WriteLine(extractedText.Substring(0, Math.Min(extractedText.Length, 1000)));
+
+            //    Console.WriteLine($"Found URLs: {fileUrls.Count}");
+
+            //    if (fileUrls.Count == 0)
+            //    {
+            //        Console.WriteLine("No file URLs found. The site may have returned a captcha or blocked the request.");
+            //        return;
+            //    }
+
+            //List<string> txtUrls = fileUrls
+            //.Where(url => url.EndsWith(".txt", StringComparison.OrdinalIgnoreCase))
+            //.ToList();
+
+            //List<TotoDraw> allDraws = new List<TotoDraw>();
+
+
+            //foreach (string txtUrl in txtUrls)
+            //{
+            //    try
+            //    {
+            //        string fileContent = await dataLoader.FileContentAsync(txtUrl);
+            //        int year = dataLoader.ExtractYearFromUrl(txtUrl);
+
+            //        IEnumerable<TotoDraw> currentDraws = txtParser.ParseTxtContent(fileContent,year);
+            //        allDraws.AddRange(currentDraws);
+
+            //        Console.WriteLine($"Successfully parsed TXT file for year {year}");
+            //    }
+            //    catch(Exception ex)
+            //    {
+            //        Console.WriteLine($"Failed to process TXT file: {txtUrl}");
+            //        Console.WriteLine(ex.Message);       
+            //    }
+
+            //}
+            //    Console.WriteLine();
+            //    Console.WriteLine($"Total TXT files parsed: {txtUrls.Count}");
+            //    Console.WriteLine($"Total parsed draw entries: {allDraws.Count}");
+            //    Console.WriteLine();
+            //if (allDraws.Any())
+            //{
+            //    txtParser.PrintTxtContent(allDraws.Where(d => d.Year == 2020).Take(5));
+            //}
         }
     }
     }

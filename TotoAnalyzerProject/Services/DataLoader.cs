@@ -108,6 +108,12 @@ namespace TotoAnalyzerProject.Services
             else return shortYear;   
         }
 
+        public async Task<byte[]> DownloadFileBytesAsync(string url)
+        {
+            byte[] fileBytes = await httpClient.GetByteArrayAsync(url);
+            return fileBytes;
+        }
+
        
     }
 }

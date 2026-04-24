@@ -62,10 +62,10 @@ namespace TotoAnalyzerProject.Parsers
             foreach(string line in lines)
             {
                 MatchCollection matches = Regex.Matches(line, @"\d+");
-                if(matches.Count < 9)
+                if (matches.Count != 9)
                 {
                     continue;
-                }
+                }   
                 List<int> numbers = new List<int>();
                 foreach(Match match in matches)
                 {

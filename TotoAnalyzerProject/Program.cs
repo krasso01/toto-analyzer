@@ -1,10 +1,8 @@
 ﻿using System.Net.Http;
-using System.Threading.Tasks;
 using TotoAnalyzerProject.Services;
 using TotoAnalyzerProject.Models;
 using TotoAnalyzerProject.Parsers;
 using System.Linq;
-
 
 namespace TotoAnalyzerProject
 {
@@ -12,7 +10,7 @@ namespace TotoAnalyzerProject
     {
         static async Task Main(string[] args)
         {
-            HttpClientHandler? handler = new HttpClientHandler()
+            HttpClientHandler handler = new HttpClientHandler()
             {
                 AutomaticDecompression = System.Net.DecompressionMethods.GZip |
                                          System.Net.DecompressionMethods.Deflate
@@ -21,90 +19,88 @@ namespace TotoAnalyzerProject
             HttpClient httpClient = new HttpClient(handler);
             httpClient.DefaultRequestHeaders.Clear();
             httpClient.DefaultRequestHeaders.Add("User-Agent",
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) " +
-            "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36");
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) " +
+                "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36");
             httpClient.DefaultRequestHeaders.Add("Accept",
-            "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8");
+                "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8");
             httpClient.DefaultRequestHeaders.Add("Accept-Language", "bg-BG,bg;q=0.9,en-US;q=0.8,en;q=0.7");
-
 
             DataLoader dataLoader = new DataLoader(httpClient);
             TxtParser txtParser = new TxtParser();
+            DocxParser docxParser = new DocxParser();
 
             string html = await dataLoader.GetPageContentAsync("https://info.toto.bg/statistika/6x49");
+            List<string> fileUrls = dataLoader.ExtractFileUrls(html);
 
-
-            List<string> fileUrls = await dataLoader.GetFilesUrlAsync();
-
-
-            DocxParser docxParser = new();
-            List<string> docxUrls =                 
-                fileUrls.Where(url=> url.EndsWith(".docx", StringComparison.OrdinalIgnoreCase))
-                                              .ToList();
-
-            if(docxUrls.Count == 0)
+            if (fileUrls.Count == 0)
             {
-                Console.WriteLine("No DOCX files found.");
+                Console.WriteLine("No file URLs found.");
                 return;
             }
-            string firstDocxUrl = docxUrls[0];
-            byte[] docxBytes = await dataLoader.DownloadFileBytesAsync(firstDocxUrl);
 
-            string tempFilePath = Path.Combine(Path.GetTempPath(), "toto_test.docx");
-            await File.WriteAllBytesAsync(tempFilePath, docxBytes);
+            List<TotoDraw> allDraws = new();
 
-            string extractedText = docxParser.ExtractTextFromDocx(tempFilePath);
-            IEnumerable<TotoDraw> docxDraws = docxParser.ParseExtractedDocxText(extractedText);
+            foreach (string fileUrl in fileUrls)
+            {
+                try
+                {
+                    if (fileUrl.EndsWith(".txt", StringComparison.OrdinalIgnoreCase))
+                    {
+                        string fileContent = await dataLoader.FileContentAsync(fileUrl);
+                        int year = dataLoader.ExtractYearFromUrl(fileUrl);
 
-            docxParser.PrintDocxContent(docxDraws);
-            //Console.WriteLine($"DOCX URL: {firstDocxUrl}");
-            //Console.WriteLine();
-            //Console.WriteLine(extractedText.Substring(0, Math.Min(extractedText.Length, 1000)));
+                        IEnumerable<TotoDraw> txtDraws = txtParser.ParseTxtContent(fileContent, year);
+                        allDraws.AddRange(txtDraws);
+                    }
+                    else if (fileUrl.EndsWith(".docx", StringComparison.OrdinalIgnoreCase))
+                    {
+                        byte[] docxBytes = await dataLoader.DownloadFileBytesAsync(fileUrl);
+                        string tempFilePath = Path.Combine(Path.GetTempPath(), "toto_temp.docx");
+                        await File.WriteAllBytesAsync(tempFilePath, docxBytes);
 
-            //    Console.WriteLine($"Found URLs: {fileUrls.Count}");
+                        string extractedText = docxParser.ExtractTextFromDocx(tempFilePath);
+                        IEnumerable<TotoDraw> docxDraws = docxParser.ParseExtractedDocxText(extractedText);
+                        allDraws.AddRange(docxDraws);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Failed to process file: {fileUrl}");
+                    Console.WriteLine(ex.Message);
+                }
+            }
 
-            //    if (fileUrls.Count == 0)
-            //    {
-            //        Console.WriteLine("No file URLs found. The site may have returned a captcha or blocked the request.");
-            //        return;
-            //    }
+            Console.WriteLine($"Total draws loaded: {allDraws.Count}");
 
-            //List<string> txtUrls = fileUrls
-            //.Where(url => url.EndsWith(".txt", StringComparison.OrdinalIgnoreCase))
-            //.ToList();
+            Statistics statistics = new Statistics(allDraws);
 
-            //List<TotoDraw> allDraws = new List<TotoDraw>();
+            var topNumbers = statistics.GetTopNumbers(10);
+            Console.WriteLine("Top 10 numbers:");
+            foreach (var kvp in topNumbers)
+            {
+                Console.WriteLine($"{kvp.Key} -> {kvp.Value}");
+            }
+            var hotPairs = statistics.GetHotPairs(10);
+            Console.WriteLine();
+            Console.WriteLine("Top 10 hot pairs:");
+            foreach (var pair in hotPairs)
+            {
+                Console.WriteLine($"{pair.Number1}, {pair.Number2} -> {pair.Count}");
+            }
 
+            var tensDistribution = statistics.GetDistributionByTens();
+            Console.WriteLine();
+            Console.WriteLine("Distribution by tens:");
+            string[] ranges = { "1-10", "11-20", "21-30", "31-40", "41-49" };
 
-            //foreach (string txtUrl in txtUrls)
-            //{
-            //    try
-            //    {
-            //        string fileContent = await dataLoader.FileContentAsync(txtUrl);
-            //        int year = dataLoader.ExtractYearFromUrl(txtUrl);
-
-            //        IEnumerable<TotoDraw> currentDraws = txtParser.ParseTxtContent(fileContent,year);
-            //        allDraws.AddRange(currentDraws);
-
-            //        Console.WriteLine($"Successfully parsed TXT file for year {year}");
-            //    }
-            //    catch(Exception ex)
-            //    {
-            //        Console.WriteLine($"Failed to process TXT file: {txtUrl}");
-            //        Console.WriteLine(ex.Message);       
-            //    }
-
-            //}
-            //    Console.WriteLine();
-            //    Console.WriteLine($"Total TXT files parsed: {txtUrls.Count}");
-            //    Console.WriteLine($"Total parsed draw entries: {allDraws.Count}");
-            //    Console.WriteLine();
-            //if (allDraws.Any())
-            //{
-            //    txtParser.PrintTxtContent(allDraws.Where(d => d.Year == 2020).Take(5));
-            //}
+            foreach (string range in ranges)
+            {
+                if (tensDistribution.ContainsKey(range))
+                {
+                    Console.WriteLine($"{range} -> {tensDistribution[range]}");
+                }
+            }
         }
     }
-    }
+}
 
- 

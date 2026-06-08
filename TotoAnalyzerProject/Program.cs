@@ -3,6 +3,7 @@ using TotoAnalyzerProject.Services;
 using TotoAnalyzerProject.Models;
 using TotoAnalyzerProject.Parsers;
 using System.Linq;
+using TotoAnalyzerProject.UI;
 
 namespace TotoAnalyzerProject
 {
@@ -30,6 +31,7 @@ namespace TotoAnalyzerProject
             DocxParser docxParser = new DocxParser();
 
             string html = await dataLoader.GetPageContentAsync("https://info.toto.bg/statistika/6x49");
+             html = await dataLoader.GetPageContentAsync("https://info.toto.bg/statistika/6x49");
             List<string> fileUrls = dataLoader.ExtractFileUrls(html);
 
             if (fileUrls.Count == 0)
@@ -74,32 +76,13 @@ namespace TotoAnalyzerProject
 
             Statistics statistics = new Statistics(allDraws);
 
-            var topNumbers = statistics.GetTopNumbers(10);
-            Console.WriteLine("Top 10 numbers:");
-            foreach (var kvp in topNumbers)
-            {
-                Console.WriteLine($"{kvp.Key} -> {kvp.Value}");
-            }
-            var hotPairs = statistics.GetHotPairs(10);
-            Console.WriteLine();
-            Console.WriteLine("Top 10 hot pairs:");
-            foreach (var pair in hotPairs)
-            {
-                Console.WriteLine($"{pair.Number1}, {pair.Number2} -> {pair.Count}");
-            }
+            Visualizer visualizer = new Visualizer();
 
-            var tensDistribution = statistics.GetDistributionByTens();
-            Console.WriteLine();
-            Console.WriteLine("Distribution by tens:");
-            string[] ranges = { "1-10", "11-20", "21-30", "31-40", "41-49" };
+            Menu menu = new Menu(allDraws);
+            menu.Run();
 
-            foreach (string range in ranges)
-            {
-                if (tensDistribution.ContainsKey(range))
-                {
-                    Console.WriteLine($"{range} -> {tensDistribution[range]}");
-                }
-            }
+
+
         }
     }
 }
